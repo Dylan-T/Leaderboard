@@ -5,31 +5,27 @@ export class FetchData extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { forecasts: [], loading: true };
+    this.state = { leaderboard: [], loading: true };
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+    this.populateLeaderboardData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static renderLeaderboard(leaderboard) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Player</th>
+            <th>Rank</th>
           </tr>
         </thead>
         <tbody>
-          {forecasts.map(forecast =>
-            <tr key={forecast.date}>
-              <td>{forecast.date}</td>
-              <td>{forecast.temperatureC}</td>
-              <td>{forecast.temperatureF}</td>
-              <td>{forecast.summary}</td>
+          {leaderboard.map(entry =>
+            <tr key={entry.player}>
+              <td>{entry.player}</td>
+              <td>{entry.rank}</td>
             </tr>
           )}
         </tbody>
@@ -40,20 +36,21 @@ export class FetchData extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
+      : FetchData.renderLeaderboard(this.state.leaderboard);
 
     return (
       <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
+        <h1 id="tabelLabel" >Leaderboard</h1>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
     );
   }
 
-  async populateWeatherData() {
-    const response = await fetch('weatherforecast');
+  async populateLeaderboardData() {
+    const response = await fetch('leaderboard');
+    console.log(response);
     const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
+    this.setState({ leaderboard: data, loading: false });
   }
 }
