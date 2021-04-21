@@ -4,12 +4,16 @@
         <TargetFramework>net5.0</TargetFramework>
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
         <SpaRoot>ClientApp\</SpaRoot>
         <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AWSSDK.Core" Version="3.7.0.11" />
+        <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.0.11" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.4" />
     </ItemGroup>
 

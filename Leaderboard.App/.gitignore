@@ -24,6 +24,9 @@ Bin/
 obj/
 Obj/
 
+Leaderboard.Unit.Test/bin/
+Leaderboard.Unit.Test/obj/
+
 # Visual Studio 2015 cache/options directory
 .vs/
 /wwwroot/dist/

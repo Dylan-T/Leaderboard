@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leaderboard.App", "Leaderboard.App\Leaderboard.App.csproj", "{F1E1EF99-4CB8-44BE-9A63-A38D9940926E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Leaderboard.Test", "Leaderboard.Test", "{D44DAC1A-3979-4977-982F-31B0452BAD94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leaderboard.Unit.Test", "Leaderboard.Unit.Test\Leaderboard.Unit.Test.csproj", "{D4134E84-8F43-4F72-9E5B-2B212D586F70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,12 @@ Global
 		{F1E1EF99-4CB8-44BE-9A63-A38D9940926E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1E1EF99-4CB8-44BE-9A63-A38D9940926E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1E1EF99-4CB8-44BE-9A63-A38D9940926E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4134E84-8F43-4F72-9E5B-2B212D586F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4134E84-8F43-4F72-9E5B-2B212D586F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4134E84-8F43-4F72-9E5B-2B212D586F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4134E84-8F43-4F72-9E5B-2B212D586F70}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4134E84-8F43-4F72-9E5B-2B212D586F70} = {D44DAC1A-3979-4977-982F-31B0452BAD94}
 	EndGlobalSection
 EndGlobal
