@@ -38,7 +38,7 @@ namespace Leaderboard.Unit.Test
             public class when_get_succeeds
             {
                 private static Exception exception;
-                static ActionResult<IEnumerable<LeaderboardEntry>> result;
+                static ActionResult result;
 
                 private Establish context = () =>
                 {

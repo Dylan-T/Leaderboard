@@ -11,46 +11,59 @@ using Microsoft.Extensions.Logging;
 namespace Leaderboard.App.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/leaderboard")]
     public class LeaderboardController : ControllerBase
     {
 
         private readonly ILogger<LeaderboardController> _logger;
         private AmazonDynamoDBClient _client;        
 
-        public LeaderboardController(ILogger<LeaderboardController> logger, AmazonDynamoDBClient client)
+        public LeaderboardController(ILogger<LeaderboardController> logger)
         {
             _logger = logger;
-            _client = client;
+            Environment.SetEnvironmentVariable("AWS_PROFILE","private");
+            _client = new AmazonDynamoDBClient();
         }
 
-        [HttpGet("{game}")]
-        public async Task<ActionResult<IEnumerable<LeaderboardEntry>>> Get(string game) {
+        [HttpGet]
+        public async Task<ActionResult> Get(string game) {
             Console.WriteLine("Leaderboard: GET");
             
             var request = new QueryRequest
             {
-                TableName = "Leaderboard",
+                TableName = "leaderboard",
                 KeyConditionExpression = "Game = :v_Game",
                 ExpressionAttributeValues = new Dictionary<string, AttributeValue> {
                     {":v_Game", new AttributeValue { S =  game }}}
             };
             var response = await _client.QueryAsync(request);
-            
             if (response.Items.Count == 0)
             {
                 return NotFound();
             }
-            return Ok(response.Items);
+            
+            List<LeaderboardEntry> output = new List<LeaderboardEntry>();
+            
+            foreach (var item in response.Items)
+            {
+                output.Add(new LeaderboardEntry()
+                {
+                    Game = item["Game"].S,
+                    Player = item["Name"].S,
+                    Rank = int.Parse(item["Rank"].N)
+                });
+            }
+            
+            return new JsonResult(output);
         }
 
-        [HttpPut("{game, name, rank}")]
-        public ActionResult Put(string game, string name, int rank)
-        {
-            //Put it in dynamo
-            
-            
-            return Ok();
-        }
+        // [HttpPut("{game, name, rank}")]
+        // public ActionResult Put(string game, string name, int rank)
+        // {
+        //     //Put it in dynamo
+        //     
+        //     
+        //     return Ok();
+        // }
     }
 }

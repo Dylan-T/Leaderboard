@@ -14,7 +14,7 @@ export class FetchData extends Component {
 
   static renderLeaderboard(leaderboard) {
     return (
-      <table className='table table-striped' aria-labelledby="tabelLabel">
+      <table className='table table-striped' aria-labelledby="tableLabel">
         <thead>
           <tr>
             <th>Player</th>
@@ -40,7 +40,7 @@ export class FetchData extends Component {
 
     return (
       <div>
-        <h1 id="tabelLabel" >Leaderboard</h1>
+        <h1 id="tableLabel">Leaderboard</h1>
         <p>This component demonstrates fetching data from the server.</p>
         {contents}
       </div>
@@ -48,9 +48,11 @@ export class FetchData extends Component {
   }
 
   async populateLeaderboardData() {
-    const response = await fetch('leaderboard');
+    const headers = { 'Content-Type': 'application/json' , 'Method': 'GET'}
+    const response = await fetch('api/leaderboard?game=table-tennis', {headers})
     console.log(response);
-    const data = await response.json();
+    const data = await response.json()
+    console.log(data)
     this.setState({ leaderboard: data, loading: false });
   }
 }
